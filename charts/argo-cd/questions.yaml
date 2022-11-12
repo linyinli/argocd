@@ -6,7 +6,7 @@ questions:
 - variable: global.image.repository
   default: "registry.example.com/argocd/quay.io/argoproj/argocd"
   description: ""
-  type: string
+  type: multiline
   required: true
   label: argocd 镜像地址
   group: "镜像设置"
@@ -49,7 +49,7 @@ questions:
 
 - variable: controller.replicas
   default: 1
-  description: "ArgoCD Controller 副本数"
+  description: ""
   type: int
   required: true
   label: argocd-application-controller 副本数
@@ -57,14 +57,14 @@ questions:
 
 - variable: server.autoscaling.enabled
   default: true
-  description: "ArgoCD Server HPA"
+  description: ""
   type: boolean
   required: true
   label: 启用 argocd-server HPA
   group: "HA 设置"
 - variable: server.autoscaling.minReplicas
   default: 2
-  description: "ArgoCD Server 最小副本数"
+  description: ""
   type: int
   required: true
   label: argocd-server-hpa 最小副本数
@@ -72,29 +72,29 @@ questions:
 
 - variable: server.ingress.enabled
   default: true
-  description: "启用 Ingress 访问"
+  description: ""
   type: boolean
   required: true
   label: 启用 Ingress
   group: "Ingress 设置"
 - variable: server.ingress.hosts[0]
   default: "argocd.example.com"
-  description: "ArgoCD 访问域名"
+  description: ""
   type: string
   required: true
   label: 配置访问域名
   group: "Ingress 设置"
 - variable: server.ingress.https
   default: true
-  description: "是否开启 https"
+  description: ""
   type: boolean
   required: true
   label: 开启 https 访问
   group: "Ingress 设置"
 - variable: server.ingress.annotations
-  default: {nginx.ingress.kubernetes.io/ssl-passthrough: "true", nginx.ingress.kubernetes.io/force-ssl-redirect: "true"}
-  description: "Ingress Annotations"
-  type: string
+  default: "nginx.ingress.kubernetes.io/ssl-passthrough: "true"\n nginx.ingress.kubernetes.io/force-ssl-redirect: "true"\n"
+  description: ""
+  type: multiline
   required: true
   label: 开启 SSL Passthrough
   group: "Ingress 设置"
@@ -102,14 +102,14 @@ questions:
 
 - variable: repoServer.autoscaling.enabled
   default: true
-  description: "Repo Server HPA"
+  description: ""
   type: boolean
   required: true
   label: 启用 argocd-repo-server HPA
   group: "HA 设置"
 - variable: repoServer.autoscaling.minReplicas
   default: 2
-  description: "Repo Server 最小副本数"
+  description: ""
   type: int
   required: true
   label: argocd-repo-server-hpa 最小副本数
@@ -117,7 +117,7 @@ questions:
 
 - variable: applicationSet.replicaCount
   default: 2
-  description: "applicationSet 副本数"
+  description: ""
   type: int
   required: true
   label: argocd-applicationset-controller 副本数
