@@ -1,0 +1,124 @@
+categories:
+- GitOps
+- CD
+
+questions:
+- variable: global.image.repository
+  default: "registry.example.com/argocd/quay.io/argoproj/argocd"
+  description: "ArgoCD 镜像地址"
+  type: string
+  required: true
+  label: argocd 镜像的内网镜像地址
+  group: "ArgoCD 镜像设置"
+- variable: dex.image.repository
+  default: "registry.example.com/argocd/ghcr.io/dexidp/dex"
+  description: "Dex 镜像地址"
+  type: string
+  required: true
+  label: dex 镜像的内网镜像地址
+  group: "ArgoCD 镜像设置"
+
+- variable: redis-ha.enabled
+  default: true
+  description: "是否开启Redis HA"
+  type: boolean
+  required: true
+  label: dex 镜像的内网镜像地址
+  group: "Redis HA 设置"
+- variable: redis-ha.image.repository
+  default: "registry.example.com/argocd/redis"
+  description: "Redis HA 镜像地址"
+  type: string
+  required: true
+  label: redis 镜像的内网镜像地址
+  group: "Redis HA 设置"
+- variable: redis-ha.exporter.image
+  default: "registry.example.com/argocd/oliver006/redis_exporter"
+  description: "Redis exporter 镜像地址"
+  type: string
+  required: true
+  label: redis_exporter 镜像的内网镜像地址
+  group: "Redis HA 设置"
+- variable: redis-ha.haproxy.image.repository
+  default: "registry.example.com.cn/argocd/haproxy"
+  description: "Redis HAproxy 镜像地址"
+  type: string
+  required: true
+  label: haproxy 镜像的内网镜像地址
+  group: "Redis HA 设置"
+
+- variable: controller.replicas
+  default: 1
+  description: "ArgoCD Controller 副本数"
+  type: int
+  required: true
+  label: argocd-application-controller 的副本数
+  group: "HA 设置"
+
+- variable: server.autoscaling.enabled
+  default: true
+  description: "是否开启 ArgoCD Server HPA"
+  type: boolean
+  required: true
+  label: 是否开启 argocd-server HPA 弹性伸缩
+  group: "HA 设置"
+- variable: server.autoscaling.minReplicas
+  default: 2
+  description: "ArgoCD Server HPA 的最小副本数"
+  type: int
+  required: true
+  label: argocd-server-hpa 弹性伸缩的最小副本数
+  group: "HA 设置"
+
+- variable: server.ingress.enabled
+  default: true
+  description: "是否开启 ArgoCD Server Ingress 访问"
+  type: boolean
+  required: true
+  label: 是否开启 argocd-server Ingress 访问
+  group: "Ingress 设置"
+- variable: server.ingress.hosts[0]
+  default: "argocd.example.com"
+  description: "配置 ArgoCD Server 访问域名"
+  type: string
+  required: true
+  label: 配置 argocd-server 的访问域名
+  group: "Ingress 设置"
+- variable: server.ingress.https
+  default: true
+  description: "是否开启 ArgoCD Server https 访问"
+  type: boolean
+  required: true
+  label: 是否开启 argocd-server https 访问
+  group: "Ingress 设置"
+- variable: server.ingress.annotations
+  default: {nginx.ingress.kubernetes.io/ssl-passthrough: "true", nginx.ingress.kubernetes.io/force-ssl-redirect: "true"}
+  description: "配置 ArgoCD Server Ingress 的 Annotations"
+  type: string
+  required: true
+  label: 配置 argocd-server Ingress 的 Annotations 开启 SSL Passthrough
+  group: "Ingress 设置"
+
+
+- variable: repoServer.autoscaling.enabled
+  default: true
+  description: "是否开启 Repo Server HPA"
+  type: boolean
+  required: true
+  label: 是否开启 argocd-repo-server HPA 弹性伸缩
+  group: "HA 设置"
+- variable: repoServer.autoscaling.minReplicas
+  default: 2
+  description: "Repo Server HPA 的最小副本数"
+  type: int
+  required: true
+  label: argocd-repo-server-hpa 弹性伸缩的最小副本数
+  group: "HA 设置"
+
+- variable: applicationSet.replicaCount
+  default: 2
+  description: "applicationSet 副本数"
+  type: int
+  required: true
+  label: argocd-applicationset-controller 的副本数
+  group: "HA 设置"
