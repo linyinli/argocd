@@ -1,29 +1,29 @@
 global:
   image:
-    repository: registry.essence.com.cn/argocd/quay.io/argoproj/argocd
+    repository: registry.example.com/argocd/quay.io/argoproj/argocd
     # tag: ""
 
 dex:
   image:
-    repository: registry.essence.com.cn/argocd/ghcr.io/dexidp/dex
+    repository: registry.example.com/argocd/ghcr.io/dexidp/dex
     # tag: v2.30.2
 
 applicationSet:
   image:
-    repository: registry.essence.com.cn/argocd/quay.io/argoproj/argocd-applicationset
+    repository: registry.example.com/argocd/quay.io/argoproj/argocd-applicationset
     # tag: "v0.4.1"
 
 redis-ha:
   enabled: true
   image:
-    repository: registry.essence.com.cn/argocd/redis
+    repository: registry.example.com/argocd/redis
     # tag: 6.2.6-alpine
   exporter:
-    image: registry.essence.com.cn/argocd/oliver006/redis_exporter
+    image: registry.example.com/argocd/oliver006/redis_exporter
     # tag: v1.15.1
   haproxy:
     image:
-      repository: registry.essence.com.cn/argocd/haproxy
+      repository: registry.example.com/argocd/haproxy
       # tag: 2.0.4
 
 controller:
@@ -39,7 +39,7 @@ server:
       nginx.ingress.kubernetes.io/ssl-passthrough: "true"
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     hosts:
-      - argocd.essence.com.cn
+      - argocd.example.com
     https: true
 
 repoServer:
