@@ -5,7 +5,7 @@
 - ArgoCD 使用 HA 高可用部署
 - 使用内网镜像仓库地址
 - 使用 Ingress 域名访问，配置 SSL Passthrough
-- 自定义 ArgoCD 的 RBAC 权限，默认只读，需要对 Namespace 进行发布时，在该 Namespace 范围内对 argocd 授予 cluster-admin 权限
+- 自定义 ArgoCD 的 RBAC 权限，默认只读，需要对 Namespace 进行发布时，在该 Namespace 范围内对 argocd 授予 cluster-admin 权限:
 
 ```shell
 kubectl create rolebinding -n app argocd-application-controller-rb --clusterrole=cluster-admin --serviceaccount=argocd:argocd-application-controller
