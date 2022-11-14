@@ -1,0 +1,46 @@
+global:
+  image:
+    repository: registry.example.com/argocd/quay.io/argoproj/argocd
+    # tag: ""
+
+dex:
+  image:
+    repository: registry.example.com/argocd/ghcr.io/dexidp/dex
+    # tag: v2.35.3-distroless
+
+redis-ha:
+  enabled: true
+  image:
+    repository: registry.example.com/argocd/redis
+    # tag: 7.0.5-alpine
+  exporter:
+    image: registry.example.com/argocd/oliver006/redis_exporter
+    # tag: v1.43.0
+  haproxy:
+    image:
+      repository: registry.example.com/argocd/haproxy
+      # tag: 2.6.4
+
+controller:
+  replicas: 1
+
+server:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+  ingress:
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    hosts:
+      - argocd.example.com
+    https: true
+
+repoServer:
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+
+applicationSet:
+  replicaCount: 2
