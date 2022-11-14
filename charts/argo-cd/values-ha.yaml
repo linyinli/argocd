@@ -18,7 +18,7 @@ redis-ha:
     # tag: v1.43.0
   haproxy:
     image:
-      repository: registry.example.com.cn/argocd/haproxy
+      repository: registry.example.com/argocd/haproxy
       # tag: 2.6.4
 
 controller:
