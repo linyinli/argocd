@@ -20,6 +20,8 @@ rules:
 - nonResourceURLs:
   - '*'
   verbs:
-  - '*'
+  - get
+  - list
+  - watch
   {{- end }}
 {{- end }}
