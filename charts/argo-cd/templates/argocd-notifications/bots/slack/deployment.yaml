@@ -2,13 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{- with (mergeOverwrite (deepCopy .Values.global.deploymentAnnotations) .Values.notifications.deploymentAnnotations) }}
-  annotations:
-    {{- range $key, $value := . }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
-  {{- end }}
-  name: {{ template "argo-cd.notifications.fullname" . }}-bot
+  name: {{ include "argo-cd.notifications.fullname" . }}-bot
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.notifications.bots.slack.name "name" .Values.notifications.bots.slack.name) | nindent 4 }}
 spec:
@@ -40,11 +34,6 @@ spec:
           command:
             - argocd-notifications
             - bot
-            - --loglevel={{ default .Values.global.logging.level .Values.notifications.bots.slack.logLevel }}
-            - --logformat={{ default .Values.global.logging.format .Values.notifications.bots.slack.logFormat }}
-            {{- range .Values.notifications.bots.slack.extraArgs }}
-            - {{ . | squote }}
-            {{- end }}
           workingDir: /app
           ports:
           - containerPort: 8080
