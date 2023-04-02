@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
-version=v2.5.2
+version=v2.5.10
 image_list=(
   quay.io/argoproj/argocd:${version}
   ghcr.io/dexidp/dex:v2.35.3
-  redis:7.0.5-alpine
+  redis:7.0.7-alpine
   haproxy:2.6.4
-  oliver006/redis_exporter:v1.43.0
+  public.ecr.aws/bitnami/redis-exporter:1.45.0
 )
 amd64_images_tar="argocd-images-${version}-amd64.tar.gz"
 arm64_images_tar="argocd-images-${version}-arm64.tar.gz"
