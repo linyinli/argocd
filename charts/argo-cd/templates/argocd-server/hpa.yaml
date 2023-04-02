@@ -1,5 +1,5 @@
 {{- if .Values.server.autoscaling.enabled }}
-apiVersion: {{ include "argo-cd.apiVersion.autoscaling" . }}
+apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   labels:
@@ -13,32 +13,16 @@ spec:
   minReplicas: {{ .Values.server.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.server.autoscaling.maxReplicas }}
   metrics:
-  {{- with .Values.server.autoscaling.targetMemoryUtilizationPercentage }}
+{{- with .Values.server.autoscaling.targetMemoryUtilizationPercentage }}
     - type: Resource
       resource:
         name: memory
-        {{- if eq (include "argo-cd.apiVersion.autoscaling" $) "autoscaling/v2beta1" }}
         targetAverageUtilization: {{ . }}
-        {{- else }}
-        target:
-          averageUtilization: {{ . }}
-          type: Utilization
-        {{- end }}
-  {{- end }}
-  {{- with .Values.server.autoscaling.targetCPUUtilizationPercentage }}
+{{- end }}
+{{- with .Values.server.autoscaling.targetCPUUtilizationPercentage }}
     - type: Resource
       resource:
         name: cpu
-        {{- if eq (include "argo-cd.apiVersion.autoscaling" $) "autoscaling/v2beta1" }}
         targetAverageUtilization: {{ . }}
-        {{- else }}
-        target:
-          averageUtilization: {{ . }}
-          type: Utilization
-        {{- end }}
-  {{- end }}
-  {{- with .Values.server.autoscaling.behavior }}
-  behavior:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+{{- end }}
 {{- end }}

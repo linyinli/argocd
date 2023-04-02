@@ -1,5 +1,5 @@
 {{- if .Values.server.GKEbackendConfig.enabled }}
-apiVersion: {{ include "argo-cd.apiVersions.cloudgoogle" . }}
+apiVersion: cloud.google.com/v1beta1
 kind: BackendConfig
 metadata:
   name: {{ template "argo-cd.server.fullname" . }}

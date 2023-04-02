@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: argocd-notifications-cm
+  name: {{ include "argo-cd.notifications.configMapName" . }}
   labels:
     {{- include "argo-cd.labels" (dict "context" . "component" .Values.notifications.name "name" .Values.notifications.name) | nindent 4 }}
 data:
   context: |
     argocdUrl: {{ .Values.notifications.argocdUrl | quote }}
-    {{- with .Values.notifications.context }}
-      {{- toYaml . | nindent 4 }}
-    {{- end }}
+  {{- with .Values.notifications.context }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- with .Values.notifications.notifiers }}
     {{- toYaml . | nindent 2 }}
   {{- end }}
