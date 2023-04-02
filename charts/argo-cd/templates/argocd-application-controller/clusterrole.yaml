@@ -15,14 +15,14 @@ rules:
     resources:
     - '*'
     verbs:
-  - get
-  - list
-  - watch
+    - get
+    - list
+    - watch
   - nonResourceURLs:
     - '*'
     verbs:
-  - get
-  - list
-  - watch
+    - get
+    - list
+    - watch
   {{- end }}
 {{- end }}
